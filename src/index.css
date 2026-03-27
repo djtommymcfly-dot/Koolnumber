@@ -43,25 +43,25 @@
 
 @layer base {
   :root {
-    --background: 140 20% 4%;
-    --foreground: 140 10% 90%;
-    --card: 140 20% 6%;
-    --card-foreground: 140 10% 90%;
-    --popover: 140 20% 6%;
-    --popover-foreground: 140 10% 90%;
-    --primary: 152 100% 45%;
-    --primary-foreground: 140 100% 10%;
-    --secondary: 140 20% 12%;
-    --secondary-foreground: 140 10% 90%;
-    --muted: 140 20% 12%;
-    --muted-foreground: 140 10% 60%;
-    --accent: 140 20% 15%;
-    --accent-foreground: 140 10% 90%;
-    --destructive: 350 100% 60%;
+    --background: 0 0% 98%;
+    --foreground: 240 10% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+    --primary: 149 100% 33%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 90%;
+    --secondary-foreground: 240 10% 10%;
+    --muted: 240 5% 92%;
+    --muted-foreground: 240 5% 40%;
+    --accent: 240 5% 90%;
+    --accent-foreground: 240 10% 10%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 140 20% 15%;
-    --input: 140 20% 15%;
-    --ring: 152 100% 45%;
+    --border: 240 5% 85%;
+    --input: 240 5% 85%;
+    --ring: 149 100% 33%;
     --radius: 0.75rem;
   }
 }
@@ -72,9 +72,9 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    background-image: radial-gradient(circle at 50% 0%, rgba(0, 230, 118, 0.05) 0%, transparent 50%),
-                      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-image: radial-gradient(circle at 50% 0%, rgba(0, 166, 80, 0.08) 0%, transparent 50%),
+                      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
     background-size: 100% 100%, 40px 40px, 40px 40px;
     background-attachment: fixed;
   }
@@ -83,16 +83,16 @@
 /* Custom Utilities for Glassmorphism & Glow */
 @layer utilities {
   .glass {
-    @apply bg-card/60 backdrop-blur-xl border border-white/5 shadow-2xl;
+    @apply bg-card/80 backdrop-blur-xl border border-border shadow-sm;
   }
   .glass-panel {
-    @apply bg-card/80 backdrop-blur-md border border-white/10;
+    @apply bg-card/90 backdrop-blur-md border border-border;
   }
   .micro-glow {
-    box-shadow: 0 0 15px -3px rgba(0, 230, 118, 0.15);
+    box-shadow: 0 0 15px -3px rgba(0, 166, 80, 0.2);
   }
   .text-glow {
-    text-shadow: 0 0 10px rgba(0, 230, 118, 0.3);
+    text-shadow: 0 0 10px rgba(0, 166, 80, 0.2);
   }
 }
 @import "tw-animate-css";

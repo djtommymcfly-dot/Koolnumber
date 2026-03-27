@@ -67,7 +67,7 @@ export function StatsRow({ services }: StatsRowProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.1, duration: 0.4 }}
         >
-          <Card className={`relative overflow-hidden border-white/10 bg-card/40 backdrop-blur-md transition-all hover:-translate-y-1 hover:border-white/20 border-b-2 ${stat.borderColor}`}>
+          <Card className={`relative overflow-hidden border-border bg-card/80 backdrop-blur-md transition-all hover:-translate-y-1 hover:border-primary/50 border-b-2 ${stat.borderColor}`}>
             <CardContent className="p-5">
               <div className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-2">
                 {stat.label}

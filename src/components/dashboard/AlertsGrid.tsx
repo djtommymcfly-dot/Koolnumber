@@ -40,8 +40,8 @@ export function AlertsGrid({ vehicle }: AlertsGridProps) {
     : [];
 
   return (
-    <Card className="border-white/10 bg-card/40 backdrop-blur-md overflow-hidden">
-      <CardHeader className="flex flex-row items-center justify-between border-b border-white/5 pb-4">
+    <Card className="border-border bg-card/80 backdrop-blur-md overflow-hidden">
+      <CardHeader className="flex flex-row items-center justify-between border-b border-border pb-4">
         <CardTitle className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
           <div className="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_rgba(0,230,118,0.8)]" />
           Alertas do Sistema

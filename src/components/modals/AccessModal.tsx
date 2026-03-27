@@ -48,7 +48,7 @@ export function AccessModal({ open, onOpenChange, service }: AccessModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] border-white/10 bg-card/90 backdrop-blur-xl shadow-2xl">
+      <DialogContent className="sm:max-w-[425px] border-border bg-card/95 backdrop-blur-xl shadow-xl">
         <DialogHeader>
           <DialogTitle className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">
             🔑 Acesso Gerado
@@ -61,17 +61,17 @@ export function AccessModal({ open, onOpenChange, service }: AccessModalProps) {
             {service ? `${service.clients.join(' · ')} · ${service.vehicle} · ${service.type} ${service.time}` : ''}
           </div>
 
-          <div className="flex items-center gap-2 rounded-lg border border-white/10 bg-black/40 p-2 mb-4">
+          <div className="flex items-center gap-2 rounded-lg border border-border bg-muted/30 p-2 mb-4">
             <div className="font-mono text-[10px] text-primary flex-1 truncate px-2">
               {link}
             </div>
-            <Button variant="ghost" size="icon" onClick={handleCopy} className="h-8 w-8 hover:bg-white/10 shrink-0">
+            <Button variant="ghost" size="icon" onClick={handleCopy} className="h-8 w-8 hover:bg-muted shrink-0">
               <Copy className="h-4 w-4 text-muted-foreground" />
             </Button>
           </div>
 
           <div className="flex items-center gap-4 mb-4">
-            <div className="h-16 w-16 shrink-0 rounded-lg bg-[repeating-conic-gradient(var(--color-card)_0%_25%,var(--color-background)_0%_50%)] bg-[length:8px_8px] opacity-60 border border-white/5" />
+            <div className="h-16 w-16 shrink-0 rounded-lg bg-[repeating-conic-gradient(var(--color-card)_0%_25%,var(--color-background)_0%_50%)] bg-[length:8px_8px] opacity-60 border border-border" />
             <div>
               <div className="font-mono text-[9px] font-bold uppercase tracking-widest text-muted-foreground mb-1">
                 JANELA DE ACESSO
@@ -87,7 +87,7 @@ export function AccessModal({ open, onOpenChange, service }: AccessModalProps) {
         </div>
 
         <DialogFooter>
-          <Button variant="ghost" onClick={() => onOpenChange(false)} className="font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-white/5">
+          <Button variant="ghost" onClick={() => onOpenChange(false)} className="font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-muted">
             Fechar
           </Button>
           <Button onClick={handleSend} className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_15px_rgba(0,230,118,0.2)] font-mono text-[10px] font-bold uppercase tracking-widest">

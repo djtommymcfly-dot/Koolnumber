@@ -42,7 +42,7 @@ export function DelayModal({ open, onOpenChange, service, onApply }: DelayModalP
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] border-white/10 bg-card/90 backdrop-blur-xl shadow-2xl">
+      <DialogContent className="sm:max-w-[425px] border-border bg-card/95 backdrop-blur-xl shadow-xl">
         <DialogHeader>
           <DialogTitle className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">
             ⏱ Registar Atraso
@@ -58,7 +58,7 @@ export function DelayModal({ open, onOpenChange, service, onApply }: DelayModalP
             <Input
               readOnly
               value={service ? `${service.time} · ${service.type} · ${service.clients.join(', ')} · ${service.vehicle}` : ''}
-              className="border-white/10 bg-black/40 font-mono text-xs text-muted-foreground opacity-60"
+              className="border-border bg-background font-mono text-xs text-muted-foreground opacity-60"
             />
           </div>
           <div className="grid gap-2">
@@ -72,7 +72,7 @@ export function DelayModal({ open, onOpenChange, service, onApply }: DelayModalP
               max="480"
               value={min}
               onChange={(e) => setMin(parseInt(e.target.value) || 0)}
-              className="border-white/10 bg-black/40 font-mono text-xs focus-visible:ring-primary"
+              className="border-border bg-background font-mono text-xs focus-visible:ring-primary"
             />
           </div>
           <div className="grid gap-2">
@@ -84,13 +84,13 @@ export function DelayModal({ open, onOpenChange, service, onApply }: DelayModalP
               placeholder="ex: Trânsito na A1, incidente..."
               value={why}
               onChange={(e) => setWhy(e.target.value)}
-              className="min-h-[80px] border-white/10 bg-black/40 font-mono text-xs focus-visible:ring-primary resize-none"
+              className="min-h-[80px] border-border bg-background font-mono text-xs focus-visible:ring-primary resize-none"
             />
           </div>
         </div>
 
         <DialogFooter>
-          <Button variant="ghost" onClick={() => onOpenChange(false)} className="font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-white/5">
+          <Button variant="ghost" onClick={() => onOpenChange(false)} className="font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-muted">
             Cancelar
           </Button>
           <Button onClick={handleApply} className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_15px_rgba(0,230,118,0.2)] font-mono text-[10px] font-bold uppercase tracking-widest">

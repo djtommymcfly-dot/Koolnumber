@@ -16,6 +16,7 @@ export interface Service {
   vehicle: string;
   distance: number | null;
   tracker: TrackerType;
+  destino: string;
   delayMin: number;
   delayReason: string;
 }

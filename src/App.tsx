@@ -9,12 +9,17 @@ import { ActivityLog } from './components/dashboard/ActivityLog';
 import { CredentialsModal } from './components/modals/CredentialsModal';
 import { DelayModal } from './components/modals/DelayModal';
 import { AccessModal } from './components/modals/AccessModal';
+import { Login } from './components/auth/Login';
+import { SubscriptionGate } from './components/auth/SubscriptionGate';
 import { LogEntry, Service } from './types';
 import { VF } from './lib/vodafone';
 import { Toaster } from './components/ui/sonner';
 import { toast } from 'sonner';
 
+type AuthState = 'logged_out' | 'active' | 'unpaid';
+
 export default function App() {
+  const [authState, setAuthState] = useState<AuthState>('logged_out');
   const [services, setServices] = useState<Service[]>([]);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [selectedVehicleId, setSelectedVehicleId] = useState<string | null>(null);
@@ -41,12 +46,12 @@ export default function App() {
     const h = (hours: number) => new Date(now.getTime() + hours * 3600000);
     const fmt = (d: Date) => `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
     return [
-      { id: 's1', time: fmt(h(-3.5)), type: 'PARTIDA', clients: ['PRIMAVERA'], vehicle: 'AT-58-LP', distance: 60, tracker: 'S5', delayMin: 0, delayReason: '' },
-      { id: 's2', time: fmt(h(-2.2)), type: 'CHEGADA', clients: ['KOOL'], vehicle: 'MX-12-AB', distance: null, tracker: 'S7', delayMin: 0, delayReason: '' },
-      { id: 's3', time: fmt(h(-0.35)), type: 'PARTIDA', clients: ['BEST 4U', 'PRIMAVERA'], vehicle: 'ZZ-99-ZZ', distance: 120, tracker: 'S5', delayMin: 0, delayReason: '' },
-      { id: 's4', time: fmt(h(0.18)), type: 'CHEGADA', clients: ['OMEGA'], vehicle: 'LX-77-YY', distance: null, tracker: 'S7', delayMin: 0, delayReason: '' },
-      { id: 's5', time: fmt(h(1.8)), type: 'PARTIDA', clients: ['KOOL', 'BEST 4U'], vehicle: 'AT-58-LP', distance: 85, tracker: 'S5', delayMin: 0, delayReason: '' },
-      { id: 's6', time: fmt(h(3.5)), type: 'CHEGADA', clients: ['PRIMAVERA'], vehicle: 'MX-12-AB', distance: null, tracker: 'S7', delayMin: 0, delayReason: '' },
+      { id: 's1', time: fmt(h(-3.5)), type: 'PARTIDA', clients: ['PRIMAVERA'], vehicle: 'AT-58-LP', distance: 60, tracker: 'S5', destino: 'Lisboa → Setúbal', delayMin: 0, delayReason: '' },
+      { id: 's2', time: fmt(h(-2.2)), type: 'CHEGADA', clients: ['KOOL'], vehicle: 'MX-12-AB', distance: null, tracker: 'S7', destino: 'Hotel vila galé tavira', delayMin: 0, delayReason: '' },
+      { id: 's3', time: fmt(h(-0.35)), type: 'PARTIDA', clients: ['BEST 4U', 'PRIMAVERA'], vehicle: 'ZZ-99-ZZ', distance: 120, tracker: 'S5', destino: 'Lisboa → Porto', delayMin: 0, delayReason: '' },
+      { id: 's4', time: fmt(h(0.18)), type: 'CHEGADA', clients: ['OMEGA'], vehicle: 'LX-77-YY', distance: null, tracker: 'S7', destino: 'Sede OMEGA', delayMin: 0, delayReason: '' },
+      { id: 's5', time: fmt(h(1.8)), type: 'PARTIDA', clients: ['KOOL', 'BEST 4U'], vehicle: 'AT-58-LP', distance: 85, tracker: 'S5', destino: 'Faro → Portimão', delayMin: 0, delayReason: '' },
+      { id: 's6', time: fmt(h(3.5)), type: 'CHEGADA', clients: ['PRIMAVERA'], vehicle: 'MX-12-AB', distance: null, tracker: 'S7', destino: 'Armazém Central', delayMin: 0, delayReason: '' },
     ];
   };
 
@@ -74,10 +79,9 @@ export default function App() {
     });
   };
 
-  const handleUpload = (file: File) => {
-    const data = mkData();
-    setServices(data);
-    toast.success(`${data.length} serviços importados`);
+  const handleUpload = (uploadedServices: Service[]) => {
+    setServices(uploadedServices);
+    toast.success(`${uploadedServices.length} serviços importados`);
   };
 
   const handleDemo = () => {
@@ -119,6 +123,22 @@ export default function App() {
 
   const activeService = services.find((s) => s.id === activeServiceId) || null;
   const selectedVehicle = services.find((s) => s.id === selectedVehicleId) || services[0] || null;
+
+  if (authState === 'logged_out') {
+    return <Login onLogin={setAuthState} />;
+  }
+
+  if (authState === 'unpaid') {
+    return (
+      <SubscriptionGate 
+        onLogout={() => setAuthState('logged_out')} 
+        onSimulatePayment={() => {
+          setAuthState('active');
+          toast.success('Pagamento processado com sucesso! Acesso restaurado.');
+        }} 
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30 font-sans">
@@ -163,7 +183,7 @@ export default function App() {
         service={activeService}
       />
       
-      <Toaster theme="dark" position="bottom-right" className="font-mono" />
+      <Toaster theme="light" position="bottom-right" className="font-mono" />
     </div>
   );
 }

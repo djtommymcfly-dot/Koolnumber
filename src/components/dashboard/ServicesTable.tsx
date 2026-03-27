@@ -32,8 +32,8 @@ export function ServicesTable({ services, onRefresh, onGenerateAll, onAction }: 
   const fmtT = (d: Date) => d.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
 
   return (
-    <Card className="border-white/10 bg-card/40 backdrop-blur-md overflow-hidden flex flex-col h-full">
-      <CardHeader className="flex flex-row items-center justify-between border-b border-white/5 pb-4">
+    <Card className="border-border bg-card/80 backdrop-blur-md overflow-hidden flex flex-col h-full">
+      <CardHeader className="flex flex-row items-center justify-between border-b border-border pb-4">
         <CardTitle className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
           <div className="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_rgba(0,230,118,0.8)]" />
           Serviços do Dia
@@ -45,7 +45,7 @@ export function ServicesTable({ services, onRefresh, onGenerateAll, onAction }: 
       <CardContent className="p-0 flex-1 overflow-auto">
         {services.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-12 text-center">
-            <div className="mb-4 rounded-full bg-white/5 p-6">
+            <div className="mb-4 rounded-full bg-muted/50 p-6">
               <MapPin className="h-12 w-12 text-muted-foreground/30" />
             </div>
             <div className="font-mono text-sm tracking-widest text-muted-foreground uppercase">
@@ -55,12 +55,13 @@ export function ServicesTable({ services, onRefresh, onGenerateAll, onAction }: 
         ) : (
           <div className="min-w-[800px]">
             <Table>
-              <TableHeader className="bg-black/20">
-                <TableRow className="border-white/5 hover:bg-transparent">
+              <TableHeader className="bg-muted/30">
+                <TableRow className="border-border hover:bg-transparent">
                   <TableHead className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Hora</TableHead>
                   <TableHead className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Tipo</TableHead>
                   <TableHead className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Cliente(s)</TableHead>
                   <TableHead className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Veículo</TableHead>
+                  <TableHead className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Destino</TableHead>
                   <TableHead className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Tracker</TableHead>
                   <TableHead className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Janela</TableHead>
                   <TableHead className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Estado</TableHead>
@@ -78,7 +79,7 @@ export function ServicesTable({ services, onRefresh, onGenerateAll, onAction }: 
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 10 }}
                         transition={{ delay: i * 0.05 }}
-                        className="border-white/5 hover:bg-white/5 transition-colors group"
+                        className="border-border hover:bg-muted/30 transition-colors group"
                       >
                         <TableCell className="font-mono text-sm font-bold text-primary tracking-wider whitespace-nowrap">
                           {s.time}
@@ -93,6 +94,9 @@ export function ServicesTable({ services, onRefresh, onGenerateAll, onAction }: 
                         </TableCell>
                         <TableCell className="font-bold tracking-wider text-foreground whitespace-nowrap">
                           {s.vehicle}
+                        </TableCell>
+                        <TableCell className="text-xs text-muted-foreground max-w-[150px] truncate" title={s.destino}>
+                          {s.destino || '—'}
                         </TableCell>
                         <TableCell>
                           <Badge variant="outline" className={`font-mono text-[9px] tracking-wider uppercase ${s.tracker === 'S5' ? 'border-blue-500/30 bg-blue-500/10 text-blue-400' : 'border-primary/30 bg-primary/10 text-primary'}`}>
@@ -122,13 +126,13 @@ export function ServicesTable({ services, onRefresh, onGenerateAll, onAction }: 
                         </TableCell>
                         <TableCell className="text-right">
                           <div className="flex items-center justify-end gap-2 opacity-70 group-hover:opacity-100 transition-opacity">
-                            <Button variant="outline" size="icon" className="h-7 w-7 border-white/10 bg-white/5 hover:border-primary/50 hover:bg-primary/10 hover:text-primary" onClick={() => onAction('access', s.id)}>
+                            <Button variant="outline" size="icon" className="h-7 w-7 border-border bg-background hover:border-primary/50 hover:bg-primary/10 hover:text-primary" onClick={() => onAction('access', s.id)}>
                               <Key className="h-3.5 w-3.5" />
                             </Button>
-                            <Button variant="outline" size="icon" className="h-7 w-7 border-white/10 bg-white/5 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-500" onClick={() => onAction('delay', s.id)}>
+                            <Button variant="outline" size="icon" className="h-7 w-7 border-border bg-background hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-500" onClick={() => onAction('delay', s.id)}>
                               <Clock className="h-3.5 w-3.5" />
                             </Button>
-                            <Button variant="outline" size="icon" className="h-7 w-7 border-white/10 bg-white/5 hover:border-primary/50 hover:bg-primary/10 hover:text-primary" onClick={() => onAction('track', s.id)}>
+                            <Button variant="outline" size="icon" className="h-7 w-7 border-border bg-background hover:border-primary/50 hover:bg-primary/10 hover:text-primary" onClick={() => onAction('track', s.id)}>
                               <MapPin className="h-3.5 w-3.5" />
                             </Button>
                           </div>
@@ -143,7 +147,7 @@ export function ServicesTable({ services, onRefresh, onGenerateAll, onAction }: 
         )}
       </CardContent>
       {services.length > 0 && (
-        <div className="border-t border-white/5 p-4 flex items-center justify-between bg-black/20">
+        <div className="border-t border-border p-4 flex items-center justify-between bg-muted/30">
           <div className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
             {services.length} serviços carregados
           </div>

@@ -17,7 +17,7 @@ export function Header({ onOpenSettings, isApiLive }: HeaderProps) {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-background/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto flex h-16 max-w-[1600px] items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-6">
           <a href="#" className="flex items-center gap-3">
@@ -33,12 +33,12 @@ export function Header({ onOpenSettings, isApiLive }: HeaderProps) {
             </div>
           </a>
 
-          <div className="hidden md:flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5">
+          <div className="hidden md:flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1.5">
             <div className={`h-2 w-2 rounded-full ${isApiLive ? 'bg-primary shadow-[0_0_8px_rgba(0,230,118,0.8)]' : 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]'} animate-pulse`} />
             <span className={`font-mono text-[10px] font-bold tracking-wider ${isApiLive ? 'text-primary' : 'text-amber-500'}`}>
               {isApiLive ? 'VODAFONE API LIVE' : 'SIMULAÇÃO ACTIVA'}
             </span>
-            <Button variant="ghost" size="icon" className="h-5 w-5 ml-1 hover:bg-white/10" onClick={onOpenSettings}>
+            <Button variant="ghost" size="icon" className="h-5 w-5 ml-1 hover:bg-muted" onClick={onOpenSettings}>
               <Settings className="h-3 w-3 text-muted-foreground" />
             </Button>
           </div>
@@ -53,7 +53,7 @@ export function Header({ onOpenSettings, isApiLive }: HeaderProps) {
               {time.toLocaleDateString('pt-PT', { weekday: 'short', day: 'numeric', month: 'short' })}
             </div>
           </div>
-          <Button variant="outline" size="sm" className="md:hidden border-white/10 bg-white/5" onClick={onOpenSettings}>
+          <Button variant="outline" size="sm" className="md:hidden border-border bg-muted/50" onClick={onOpenSettings}>
             <Settings className="h-4 w-4" />
           </Button>
         </div>

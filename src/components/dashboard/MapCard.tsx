@@ -192,8 +192,8 @@ export function MapCard({ selectedVehicle }: MapCardProps) {
   const hDir = pos ? HDIRS[Math.round(pos.heading / 45) % 8] : 'N';
 
   return (
-    <Card className="border-white/10 bg-card/40 backdrop-blur-md overflow-hidden flex flex-col">
-      <CardHeader className="flex flex-row items-center justify-between border-b border-white/5 pb-4">
+    <Card className="border-border bg-card/80 backdrop-blur-md overflow-hidden flex flex-col">
+      <CardHeader className="flex flex-row items-center justify-between border-b border-border pb-4">
         <CardTitle className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground">
           <div className="h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_rgba(0,230,118,0.8)]" />
           Vodafone Protect & Connect
@@ -204,12 +204,12 @@ export function MapCard({ selectedVehicle }: MapCardProps) {
         </Badge>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="relative h-[290px] w-full bg-black/40">
+        <div className="relative h-[290px] w-full bg-muted/30">
           <div ref={mapRef} className="h-full w-full" />
           
           {loading && (
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm">
-              <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/10 border-t-primary" />
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-border border-t-primary" />
               <div className="mt-4 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
                 A carregar mapa...
               </div>
@@ -227,7 +227,7 @@ export function MapCard({ selectedVehicle }: MapCardProps) {
 
           {!loading && !error && (
             <>
-              <div className="absolute left-3 top-3 z-10 rounded-xl border border-white/10 bg-background/80 p-3 backdrop-blur-md shadow-2xl">
+              <div className="absolute left-3 top-3 z-10 rounded-xl border border-border bg-background/90 p-3 backdrop-blur-md shadow-lg">
                 <div className="font-mono text-3xl font-bold leading-none text-primary">
                   {pos?.speed ?? '—'}
                 </div>
@@ -236,7 +236,7 @@ export function MapCard({ selectedVehicle }: MapCardProps) {
                 </div>
               </div>
 
-              <div className="absolute right-3 top-3 z-10 rounded-xl border border-white/10 bg-background/80 p-3 backdrop-blur-md shadow-2xl text-right">
+              <div className="absolute right-3 top-3 z-10 rounded-xl border border-border bg-background/90 p-3 backdrop-blur-md shadow-lg text-right">
                 <div className="font-mono text-sm font-bold tracking-widest text-primary">
                   {selectedVehicle?.vehicle || 'AT-58-LP'}
                 </div>
@@ -252,7 +252,7 @@ export function MapCard({ selectedVehicle }: MapCardProps) {
         </div>
 
         <div className="p-5">
-          <div className="grid grid-cols-2 gap-y-3 gap-x-6 border-b border-white/5 pb-4">
+          <div className="grid grid-cols-2 gap-y-3 gap-x-6 border-b border-border pb-4">
             <div className="flex justify-between items-center font-mono">
               <span className="text-[9px] uppercase tracking-widest text-muted-foreground">Latitude</span>
               <span className="text-xs font-bold text-primary">{pos?.lat.toFixed(5) ?? '—'}</span>

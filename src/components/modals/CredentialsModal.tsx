@@ -59,7 +59,7 @@ export function CredentialsModal({ open, onOpenChange, onSave }: CredentialsModa
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[540px] border-white/10 bg-card/90 backdrop-blur-xl shadow-2xl">
+      <DialogContent className="sm:max-w-[540px] border-border bg-card/95 backdrop-blur-xl shadow-xl">
         <DialogHeader>
           <DialogTitle className="font-mono text-sm font-bold uppercase tracking-widest text-foreground">
             ⚙ Configuração — Vodafone API
@@ -86,7 +86,7 @@ export function CredentialsModal({ open, onOpenChange, onSave }: CredentialsModa
               value={user}
               onChange={(e) => setUser(e.target.value)}
               placeholder="utilizador@empresa.pt"
-              className="border-white/10 bg-black/40 font-mono text-xs focus-visible:ring-primary"
+              className="border-border bg-background font-mono text-xs focus-visible:ring-primary"
             />
           </div>
           <div className="grid gap-2">
@@ -99,7 +99,7 @@ export function CredentialsModal({ open, onOpenChange, onSave }: CredentialsModa
               value={pass}
               onChange={(e) => setPass(e.target.value)}
               placeholder="••••••••"
-              className="border-white/10 bg-black/40 font-mono text-xs focus-visible:ring-primary"
+              className="border-border bg-background font-mono text-xs focus-visible:ring-primary"
             />
           </div>
           <div className="grid gap-2">
@@ -111,7 +111,7 @@ export function CredentialsModal({ open, onOpenChange, onSave }: CredentialsModa
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="https://api.automotive.vodafone.com/v1"
-              className="border-white/10 bg-black/40 font-mono text-xs focus-visible:ring-primary"
+              className="border-border bg-background font-mono text-xs focus-visible:ring-primary"
             />
           </div>
           <div className="grid gap-2">
@@ -123,13 +123,13 @@ export function CredentialsModal({ open, onOpenChange, onSave }: CredentialsModa
               value={devices}
               onChange={(e) => setDevices(e.target.value)}
               placeholder="VF-AT58LP-001, VF-MX12AB-002"
-              className="border-white/10 bg-black/40 font-mono text-xs focus-visible:ring-primary"
+              className="border-border bg-background font-mono text-xs focus-visible:ring-primary"
             />
           </div>
         </div>
 
         <DialogFooter className="gap-2 sm:gap-0">
-          <Button variant="ghost" onClick={() => onOpenChange(false)} className="font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-white/5">
+          <Button variant="ghost" onClick={() => onOpenChange(false)} className="font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-muted">
             Cancelar
           </Button>
           <Button variant="outline" onClick={handleTest} className="border-amber-500/30 bg-amber-500/10 text-amber-500 hover:bg-amber-500/20 hover:text-amber-400 font-mono text-[10px] font-bold uppercase tracking-widest">

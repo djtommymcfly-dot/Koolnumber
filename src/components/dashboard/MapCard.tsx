@@ -118,16 +118,26 @@ export function MapCard({ selectedVehicle }: MapCardProps) {
     };
 
     if (!window.google) {
-      const s = document.createElement('script');
-      s.src = `https://maps.googleapis.com/maps/api/js?key=${GMAPS_KEY}`;
-      s.async = true;
-      s.defer = true;
-      s.onload = initMap;
-      s.onerror = () => {
-        setLoading(false);
-        setError(true);
-      };
-      document.head.appendChild(s);
+      const existingScript = document.querySelector(`script[src^="https://maps.googleapis.com/maps/api/js"]`);
+      if (existingScript) {
+        const checkGoogle = setInterval(() => {
+          if (window.google) {
+            clearInterval(checkGoogle);
+            initMap();
+          }
+        }, 100);
+      } else {
+        const s = document.createElement('script');
+        s.src = `https://maps.googleapis.com/maps/api/js?key=${GMAPS_KEY}`;
+        s.async = true;
+        s.defer = true;
+        s.onload = initMap;
+        s.onerror = () => {
+          setLoading(false);
+          setError(true);
+        };
+        document.head.appendChild(s);
+      }
     } else {
       initMap();
     }
